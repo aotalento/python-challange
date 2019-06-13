@@ -1,9 +1,10 @@
+#Import dependants
 import csv
-
 import os
 
 PollResultsCsv = os.path.join("election_data.csv")
 
+# Define lists
 TotalVotes = 0
 Candidates = []
 VotesEach = []
@@ -14,17 +15,20 @@ with open(PollResultsCsv, newline = "") as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ",")
     csvheader = next(csvreader)
     
+    #Loop through 
     for row in csvreader:
         TotalVotes = TotalVotes + 1
         Candidates.append(row[2])
         
-        
-    for x in set(Candidates):
-        EachCandidate.append(x)
-        y = Candidates.count(x)
-        VotesEach.append(y)
-        z = round((y/TotalVotes)*100, 3)
-        VotePercentage.append(z)
+    #Select out individual candidates    
+    for i in set(Candidates):
+        EachCandidate.append(i)
+        #Count the number of times they come up
+        j = Candidates.count(i)
+        VotesEach.append(j)
+        #Solve for vote percentage
+        k = round((j/TotalVotes)*100, 3)
+        VotePercentage.append(k)
         
     Winner = max(VotesEach)
     WinnerName = EachCandidate[VotesEach.index(Winner)]
