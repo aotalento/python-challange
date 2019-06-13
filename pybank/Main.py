@@ -20,32 +20,38 @@ with open(BankData, newline = "") as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ",")
     csvheader = next(csvreader)
     
-#    Count the months in the sheet 
+    #Count the months in the sheet 
     for row in csvreader:
         MonthCount = MonthCount + 1
         
-#       Set the date column
+        #Set the date column
         Date.append(row[0])
 
-#     Set the profits column
+        #Set the profits column
         Profits.append(row[1])
     
-#     Calculate total profits
+        #Calculate total profits
         TotalProfits = TotalProfits + int(row[1])
     
-#     Calculate average change in profits
+        #Calculate average change in profits
         FinalProfit = int(row[1])
         Monthly_Change= FinalProfit - StartingProfit
         
+        #Add a list for the changes
         MonthlyChange.append(Monthly_Change)
+        
         
         Change = Change + Monthly_Change
         StartingProfit = FinalProfit
         
+        
         ProfitChanges = round((Change/MonthCount))
         
+        #Find the hightst number in the change
         GreatestIncrease = max(MonthlyChange)
         IncreaseDate = Date[MonthlyChange.index(GreatestIncrease)]
+        
+        #Find the lowest change
         GreatestLoss = min(MonthlyChange)
         LossDate = Date[MonthlyChange.index(GreatestLoss)]
         
