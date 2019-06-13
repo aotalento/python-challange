@@ -42,7 +42,7 @@ with open(BankData, newline = "") as csvfile:
         Change = Change + Monthly_Change
         StartingProfit = FinalProfit
         
-        ProfitChanges = round((AvgChange/MonthCount))
+        ProfitChanges = round((Change/MonthCount))
         
         GreatestIncrease = max(MonthlyChange)
         IncreaseDate = Date[MonthlyChange.index(GreatestIncrease)]
